@@ -1,0 +1,9 @@
+# 2. shitty ECB — what 90% of noobs write first
+cipher = OpenSSL::Cipher::AES256.new(:ECB)
+cipher.encrypt
+cipher.key = k = OpenSSL::Random.random_bytes(32)
+
+data = File.binread("file.jpg")
+enc  = cipher.update(data) + cipher.final
+File.write("file.jpg.enc", enc)
+File.delete("file.jpg")           # the money moment

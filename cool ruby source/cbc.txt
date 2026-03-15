@@ -1,0 +1,8 @@
+# 3. CBC version — looks cooler, still beginner
+cipher = OpenSSL::Cipher::AES256.new(:CBC)
+cipher.encrypt
+cipher.key = k
+cipher.iv  = iv = cipher.random_iv          # per file IV — common
+
+enc = cipher.update(data) + cipher.final
+File.write("file.jpg.enc", iv + enc)        # IV travels with ciphertext
